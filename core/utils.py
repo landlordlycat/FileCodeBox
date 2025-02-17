@@ -1,83 +1,94 @@
+# @Time    : 2023/8/13 19:54
+# @Author  : Lan
+# @File    : utils.py
+# @Software: PyCharm
 import datetime
 import hashlib
 import random
-import asyncio
 import string
 import time
-
-from sqlalchemy import or_, select, delete
-from sqlalchemy.ext.asyncio.session import AsyncSession
-from .database import Codes, engine
-from .depends import IPRateLimit
-from .storage import STORAGE_ENGINE
-from settings import settings
-
-storage = STORAGE_ENGINE[settings.STORAGE_ENGINE]()
-
-# 错误IP限制器
-error_ip_limit = IPRateLimit(settings.ERROR_COUNT, settings.ERROR_MINUTE)
-# 上传文件限制器
-upload_ip_limit = IPRateLimit(settings.UPLOAD_COUNT, settings.UPLOAD_MINUTE)
-
-
-async def delete_expire_files():
-    while True:
-        async with AsyncSession(engine, expire_on_commit=False) as s:
-            await error_ip_limit.remove_expired_ip()
-            await upload_ip_limit.remove_expired_ip()
-            query = select(Codes).where(or_(Codes.exp_time < datetime.datetime.now(), Codes.count == 0))
-            exps = (await s.execute(query)).scalars().all()
-            files = []
-            exps_ids = []
-            for exp in exps:
-                if exp.type != "text":
-                    files.append(exp.text)
-                exps_ids.append(exp.id)
-            await storage.delete_files(files)
-            query = delete(Codes).where(Codes.id.in_(exps_ids))
-            await s.execute(query)
-            await s.commit()
-        await asyncio.sleep(settings.DELETE_EXPIRE_FILES_INTERVAL * 60)
+from core.settings import settings
 
 
 async def get_random_num():
+    """
+    获取随机数
+    :return:
+    """
     return random.randint(10000, 99999)
 
 
+r_s = string.ascii_uppercase + string.digits
+
+
 async def get_random_string():
-    r_s = string.ascii_letters + string.digits
-    return ''.join(random.choice(r_s) for _ in range(5)).upper()
+    """
+    获取随机字符串
+    :return:
+    """
+    return "".join(random.choice(r_s) for _ in range(5))
 
 
-async def get_code(s: AsyncSession, exp_style):
-    if exp_style == 'forever':
-        generate = get_random_string
-    else:
-        generate = get_random_num
-    code = await generate()
-    while (await s.execute(select(Codes.id).where(Codes.code == code))).scalar():
-        code = await generate()
-    return str(code)
+async def get_now():
+    """
+    获取当前时间
+    :return:
+    """
+    return datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=8)))
 
 
-async def get_token(ip, code):
-    return hashlib.sha256(f"{ip}{code}{int(time.time() / 1000)}000{settings.ADMIN_PASSWORD}".encode()).hexdigest()
+async def get_select_token(code: str):
+    """
+    获取下载token
+    :param code:
+    :return:
+    """
+    token = settings.admin_token
+    return hashlib.sha256(
+        f"{code}{int(time.time() / 1000)}000{token}".encode()
+    ).hexdigest()
 
 
-async def get_expire_info(expire_style, expire_value, s):
-    now = datetime.datetime.now()
-    if expire_value <= 0 or expire_value > 999:
-        return True, None, None
-    code = await get_code(s, expire_style)
-    if expire_style == 'day':
-        return False, now + datetime.timedelta(days=expire_value), -1, code
-    elif expire_style == 'hour':
-        return False, now + datetime.timedelta(hours=expire_value), -1, code
-    elif expire_style == 'minute':
-        return False, now + datetime.timedelta(minutes=expire_value), -1, code
-    elif expire_style == 'forever':
-        return False, None, -1, code
-    elif expire_style == 'count':
-        return False, None, expire_value, code
-    else:
-        return True, None, None
+async def get_file_url(code: str):
+    """
+    对于需要通过服务器中转下载的服务，获取文件下载地址
+    :param code:
+    :return:
+    """
+    return f"/share/download?key={await get_select_token(code)}&code={code}"
+
+
+async def max_save_times_desc(max_save_seconds: int):
+    """
+    获取最大保存时间的描述
+    :param max_save_seconds:
+    :return:
+    """
+
+    def gen_desc_zh(value: int, desc: str):
+        if value > 0:
+            return f"{value}{desc}"
+        else:
+            return ""
+
+    def gen_desc_en(value: int, desc: str):
+        if value > 0:
+            ret = f"{value} {desc}"
+            if value > 1:
+                ret += "s"
+            ret += " "
+            return ret
+        else:
+            return ""
+
+    max_timedelta = datetime.timedelta(seconds=max_save_seconds)
+    desc_zh, desc_en = "最长保存时间：", "Max save time: "
+    desc_zh += gen_desc_zh(max_timedelta.days, "天")
+    desc_en += gen_desc_en(max_timedelta.days, "day")
+    desc_zh += gen_desc_zh(max_timedelta.seconds // 3600, "小时")
+    desc_en += gen_desc_en(max_timedelta.seconds // 3600, "hour")
+    desc_zh += gen_desc_zh(max_timedelta.seconds % 3600 // 60, "分钟")
+    desc_en += gen_desc_en(max_timedelta.seconds % 3600 // 60, "minute")
+    desc_zh += gen_desc_zh(max_timedelta.seconds % 60, "秒")
+    desc_en += gen_desc_en(max_timedelta.seconds % 60, "second")
+    return desc_zh, desc_en

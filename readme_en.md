@@ -1,230 +1,289 @@
+# FileCodeBox
+
 <div align="center">
-<h1>File Express Cabinet - Lite</h1>
-<h2>FileCodeBox - Lite</h2>
-<p><em>share text and files with anonymous passwords, and take files like express delivery </em></p>
+
+<img src="https://fastly.jsdelivr.net/gh/vastsa/FileCodeBox@V1.6/static/banners/img_1.png" alt="FileCodeBox Logo">
+
+<p><em>Share text and files anonymously with a passcode, like picking up a package</em></p>
+
+[![GitHub stars](https://img.shields.io/github/stars/vastsa/FileCodeBox)](https://github.com/vastsa/FileCodeBox/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/vastsa/FileCodeBox)](https://github.com/vastsa/FileCodeBox/network)
+[![GitHub issues](https://img.shields.io/github/issues/vastsa/FileCodeBox)](https://github.com/vastsa/FileCodeBox/issues)
+[![GitHub license](https://img.shields.io/github/license/vastsa/FileCodeBox)](https://github.com/vastsa/FileCodeBox/blob/master/LICENSE)
+[![QQ Group](https://img.shields.io/badge/QQ%20Group-739673698-blue.svg)](https://qm.qq.com/q/PemPzhdEIM)
+[![Python Version](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.68+-green.svg)](https://fastapi.tiangolo.com)
+[![Vue Version](https://img.shields.io/badge/Vue.js-3.x-brightgreen.svg)](https://v3.vuejs.org)
+
+[简体中文](./readme.md) | [Deployment Guide](https://github.com/vastsa/FileCodeBox/wiki/Deployment-Guide) | [FAQ](https://github.com/vastsa/FileCodeBox/wiki/FAQ)
+
 </div>
 
-![banner](https://fastly.jsdelivr.net/gh/vastsa/FileCodeBox@V1.6/static/banners/img_1.png)
+## 📝 Introduction
 
+FileCodeBox is a lightweight file sharing tool developed with FastAPI + Vue3. It allows users to share text and files easily, where recipients only need a passcode to retrieve the files, just like picking up a package from a delivery locker.
 
----
+## 🖼️ Preview
 
-[简体中文](./readme.md) | [English](./readme_en.md)
+<div align="center">
+<h3>
+<a href="https://github.com/vastsa/FileCodeBoxFronted" target="_blank">
+<img src="https://img.shields.io/badge/Frontend-FileCodeBoxFronted2024-blue?style=for-the-badge&logo=github" alt="前端仓库2024">
+</a>
+<a href="https://github.com/vastsa/FileCodeBoxFronted2023" target="_blank">
+<img src="https://img.shields.io/badge/Frontend-FileCodeBoxFronted2023-blue?style=for-the-badge&logo=github" alt="前端仓库2023">
+</a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://share.lanol.cn" target="_blank">
+<img src="https://img.shields.io/badge/Demo-share.lanol.cn-green?style=for-the-badge&logo=internet-explorer" alt="演示站点">
+</a>
+</h3>
+</div>
 
-## Main features
+### New Interface
+<div align="center">
+<table>
+<tr>
+<td><img src="./.github/images/img_7.png" alt="File Upload" title="File Upload Interface"></td>
+<td><img src="./.github/images/img_8.png" alt="Text Share" title="Text Share Interface"></td>
+</tr>
+<tr>
+<td><img src="./.github/images/img_10.png" alt="File Management" title="File Management Interface"></td>
+<td><img src="./.github/images/img_9.png" alt="System Settings" title="System Settings Interface"></td>
+</tr>
+<tr>
+<td><img src="./.github/images/img_11.png" alt="Mobile View" title="Mobile Interface"></td>
+<td><img src="./.github/images/img_12.png" alt="Dark Mode" title="Dark Mode Interface"></td>
+</tr>
+<tr>
+<td><img src="./.github/images/img_13.png" alt="Internationalization" title="Language Support"></td>
+<td><img src="./.github/images/img_14.png" alt="Responsive" title="Responsive Design"></td>
+</tr>
+</table>
+</div>
 
-- [x] lightweight and simple: Fastapi + Sqlite3 + Vue2 + ElementUI
-- [x] easy upload: copy and paste, drag and drop
-- [x] multiple types: Text, File
-- [x] explosion Prevention: error count limit
-- [x] prevent abuse: IP address limits the number of uploads
-- [x] password sharing: random password, file access, custom times, and validity period
-- [x] anonymous sharing: no registration, no login
-- [x] management Panel: View all files and delete them
-- [x] one-click deployment: docker one-click deployment
-- [x] A variety of storage methods : Aliyun OSS、 local file flow
+### Classic Interface
+<div align="center">
+<table>
+<tr>
+<td><img src="./.github/images/img.png" alt="Home" title="Home Page"></td>
+<td><img src="./.github/images/img_1.png" alt="Upload" title="Upload Interface"></td>
+</tr>
+<tr>
+<td><img src="./.github/images/img_2.png" alt="Management" title="Management Interface"></td>
+<td><img src="./.github/images/img_3.png" alt="Settings" title="Settings Interface"></td>
+</tr>
+<tr>
+<td><img src="./.github/images/img_4.png" alt="Share" title="Share Interface"></td>
+<td><img src="./.github/images/img_5.png" alt="Download" title="Download Interface"></td>
+</tr>
+</table>
+</div>
 
-## Deployment method
+## 🎯 Use Cases
 
-### One-click Docker deployment
+<table>
+<tr>
+<td align="center">
+<h4>📁 Temporary File Sharing</h4>
+Quick file sharing without registration
+</td>
+<td align="center">
+<h4>📝 Quick Text Sharing</h4>
+Share code snippets and text content
+</td>
+<td align="center">
+<h4>🕶️ Anonymous Transfer</h4>
+Privacy-protected file transfer
+</td>
+</tr>
+<tr>
+<td align="center">
+<h4>💾 Temporary Storage</h4>
+File storage with expiration time
+</td>
+<td align="center">
+<h4>🔄 Cross-platform Transfer</h4>
+Quick file transfer between devices
+</td>
+<td align="center">
+<h4>🌐 Private Share Service</h4>
+Build your own file sharing service
+</td>
+</tr>
+</table>
 
-#### AMD
+## ✨ Core Features
+
+<table>
+<tr>
+<td align="center">
+<h4>🚀 Lightweight</h4>
+Based on FastAPI + SQLite3 + Vue3 + ElementUI
+</td>
+<td align="center">
+<h4>📤 Easy Upload</h4>
+Support copy-paste and drag-drop
+</td>
+<td align="center">
+<h4>📦 Multiple Types</h4>
+Support text and various file types
+</td>
+</tr>
+<tr>
+<td align="center">
+<h4>🔒 Security</h4>
+
+- IP upload limits
+- Error attempt limits
+- File expiration
+</td>
+<td align="center">
+<h4>🎫 Passcode Sharing</h4>
+Random codes with customizable limits
+</td>
+<td align="center">
+<h4>🌍 Multi-language</h4>
+Support for Simplified Chinese, Traditional Chinese, and English
+</td>
+</tr>
+<tr>
+<td align="center">
+<h4>🎭 Anonymous</h4>
+No registration required
+</td>
+<td align="center">
+<h4>🛠 Admin Panel</h4>
+File and system management
+</td>
+<td align="center">
+<h4>🐳 Docker</h4>
+One-click deployment
+</td>
+</tr>
+<tr>
+<td align="center">
+<h4>💾 Storage Options</h4>
+Local, S3, OneDrive support
+</td>
+<td align="center">
+<h4>📱 Responsive</h4>
+Mobile-friendly design
+</td>
+<td align="center">
+<h4>💻 CLI Support</h4>
+Command-line download
+</td>
+</tr>
+</table>
+
+## 🚀 Quick Start
+
+### Docker Deployment
 
 ```bash
-docker run -d --restart=always -p 12345:12345 -v /opt/FileCodeBox/:/app/data --name filecodebox lanol/filecodebox:latest
+docker run -d --restart=always -p 12345:12345 -v /opt/FileCodeBox/:/app/data --name filecodebox lanol/filecodebox:beta
 ```
 
-#### ARM
+### Manual Deployment
 
+1. Clone the repository
 ```bash
-docker run -d --restart=always -p 12345:12345 -v /Users/lan/soft/FileCodeBox/:/app/data --name filecodebox lanol/filecodebox:arm
+git clone https://github.com/vastsa/FileCodeBox.git
 ```
 
-### Update
-
+2. Install dependencies
 ```bash
-// 找到容器ID
-docker ps -a
-// 停止容器并删除
-docker stop 容器ID && docker rm 容器ID
-// 重新运行容器
-docker run -d --restart=always -p 12345:12345 -v /opt/FileCodeBox/:/app/data --name filecodebox lanol/filecodebox:latest
+cd FileCodeBox
+pip install -r requirements.txt
 ```
 
-### Other methods
-
-For reference only, historical version->[部署文档](https://www.yuque.com/lxyo/work/zd0kvzy7fofx6w7v)
-
-## Project Plan
-
-December 14, 2022
-This project is mainly light-weight, mainly single-user, offline environment, so there is no need to add too many
-things, so in fact, the basic functions of this project have been completed, and the rest is to maintain and improve the
-existing functions.
-
-No new major functions will be added. If there are new functions, it will be our Pro version. Of course, it will
-continue to be open source. It is an honor to be open source with @veoco. I learned from his code Many, I basically used
-the Django set before, and only used Fastapi. Many of his writing methods have benefited me a lot, and I have a deeper
-understanding of Fastapi, so I will also use Fastapi in the Pro version .
-
-According to some current feedback, I hope to add multi-user functions and multi-storage engines, etc. Welcome to
-continue to give comments and join us in joint development.
-
-If you have better ideas and suggestions, welcome to file an issue.
-
-## Preview
-
-### Demo
-
-[https://share.lanol.cn](https://share.lanol.cn)
-
-### Dark Theme
-
-<table style="width:100%">
-
-<tr style="width: 100%">
-<td style="width: 50%">
-<img src="https://fastly.jsdelivr.net/gh/vastsa/FileCodeBox@V1.6/images/img_10.png" alt="寄文件">
-
-</td>
-<td style="width: 50%">
-<img src="https://fastly.jsdelivr.net/gh/vastsa/FileCodeBox@V1.6/images/img_11.png" alt="寄文件">
-
-</td>
-</tr>
-</table>
-
-### Send
-
-<table style="width: 100%">
-<tr style="width: 100%">
-<td style="width: 50%">
-<img src="https://fastly.jsdelivr.net/gh/vastsa/FileCodeBox@V1.6/images/img_1.png" alt="寄文件">
-</td>
-<td style="width: 50%">
-<img src="https://fastly.jsdelivr.net/gh/vastsa/FileCodeBox@V1.6/images/img_2.png" alt="寄文本">
-</td>
-</tr>
-<tr style="width: 100%;">
-<td colspan="2" style="width: 100%;">
-<img src="https://fastly.jsdelivr.net/gh/vastsa/FileCodeBox@V1.6/images/img_3.png" alt="寄文本">
-</td>
-</tr>
-</table>
-
-### Receive
-
-<table style="width: 100%">
-<tr style="width: 100%">
-<td style="width: 50%">
-<img src="https://fastly.jsdelivr.net/gh/vastsa/FileCodeBox@V1.6/images/img_6.png" alt="取件">
-</td>
-<td style="width: 50%">
-<img src="https://fastly.jsdelivr.net/gh/vastsa/FileCodeBox@V1.6/images/img_5.png" alt="取件码错误">
-</td>
-</tr>
-<tr style="width: 100%;">
-<td colspan="2" style="width: 100%;">
-<img src="https://fastly.jsdelivr.net/gh/vastsa/FileCodeBox@V1.6/images/img_4.png" alt="取文件">
-</td>
-</tr>
-</table>
-
-### Manage
-
-<table style="width: 100%">
-<tr style="width: 100%">
-<td style="width: 50%">
-<img src="https://fastly.jsdelivr.net/gh/vastsa/FileCodeBox@V1.6/images/img_7.png" alt="admin">
-</td>
-<td style="width: 50%">
-<img src="https://fastly.jsdelivr.net/gh/vastsa/FileCodeBox@V1.6/images/img_12.png" alt="admin">
-</td>
-</tr>
-<tr style="width: 100%;">
-<td colspan="2" style="width: 100%;">
-<img src="https://fastly.jsdelivr.net/gh/vastsa/FileCodeBox@V1.6/images/img_13.png" alt="admin">
-</td>
-</tr>
-</table>
-
-## Configuration file
-
-if you need to modify the configuration, you can put the file in `/opt/FileCodeBox/` directory and name it `.env` , and
-then restart the container.
-If it is not Docker, you need to create a `data` folder in the same directory as the project, and then create a `.env`
-file
-
-```dotenv
-# 端口
-PORT=12345
-# Sqlite数据库文件
-DATABASE_URL=sqlite+aiosqlite:///database.db
-# 静态文件夹
-DATA_ROOT=./static
-# 静态文件夹URL
-STATIC_URL=/static
-# 开启上传
-ENABLE_UPLOAD=True
-# 错误次数
-ERROR_COUNT=5
-# 错误限制分钟数
-ERROR_MINUTE=10
-# 上传次数
-UPLOAD_COUNT=60
-# 上传限制分钟数
-UPLOAD_MINUTE=1
-# 删除过期文件的间隔（分钟）
-DELETE_EXPIRE_FILES_INTERVAL=10
-# 管理地址
-ADMIN_ADDRESS=admin
-# 管理密码
-ADMIN_PASSWORD=admin
-# 文件大小限制，默认10MB
-FILE_SIZE_LIMIT=10
-# 网站标题
-TITLE=文件快递柜
-# 网站描述
-DESCRIPTION=FileCodeBox，文件快递柜，口令传送箱，匿名口令分享文本，文件，图片，视频，音频，压缩包等文件
-# 网站关键词
-KEYWORDS=FileCodeBox，文件快递柜，口令传送箱，匿名口令分享文本，文件，图片，视频，音频，压缩包等文件
-# 存储引擎
-STORAGE_ENGINE=filesystem
-# 如果使用阿里云OSS服务的话需要额外创建如下参数：
-# 阿里云账号AccessKey
-KeyId=阿里云账号AccessKey
-# 阿里云账号AccessKeySecret
-KeySecret=阿里云账号AccessKeySecret
-# 阿里云OSS Bucket的地域节点
-OSS_ENDPOINT=阿里云OSS Bucket的地域节点
-# 阿里云OSS Bucket的BucketName
-BUCKET_NAME=阿里云OSS Bucket的BucketName
+3. Start the service
+```bash
+python main.py
 ```
 
-## Status
+## 📖 Usage Guide
 
-![Alt](https://repobeats.axiom.co/api/embed/7a6c92f1d96ee57e6fb67f0df371528397b0c9ac.svg "Repobeats analytics image")
+### Share Files
+1. Open the website, click "Share File"
+2. Select or drag files
+3. Set expiration time and count
+4. Get the passcode
 
-## Star History
+### Retrieve Files
+1. Open the website, enter passcode
+2. Click retrieve
+3. Download file or view text
 
-[![Star History Chart](https://api.star-history.com/svg?repos=vastsa/FileCodeBox&type=Date)](https://star-history.com/#vastsa/FileCodeBox&Date)
+### Admin Panel
+1. Visit `/admin`
+2. Enter admin password
+3. Manage files and settings
 
-## Appreciate
+## 🛠 Development Guide
 
-<table style="width: 100%">
-<tr style="width: 100%">
-<td style="width: 50%;text-align: center;">
-支付宝
-<img src="https://fastly.jsdelivr.net/gh/vastsa/FileCodeBox@V1.6/images/img_9.png" alt="支付宝">
-</td>
-<td style="width: 50%;text-align: center">
-微信
-<img src="https://fastly.jsdelivr.net/gh/vastsa/FileCodeBox@V1.6/images/img_8.png" alt="微信">
-</td>
-</tr>
-</table>    
+### Project Structure
+```
+FileCodeBox/
+├── apps/           # Application code
+│   ├── admin/     # Admin backend
+│   └── base/      # Base functions
+├── core/          # Core functions
+├── data/          # Data directory
+└── fcb-fronted/   # Frontend code
+```
 
-## Disclaimer
+### Development Environment
+- Python 3.8+
+- Node.js 14+
+- Vue 3
+- FastAPI
 
-this project is open source for learning only and cannot be used for any illegal purposes. Otherwise, you will be
-responsible for the consequences and have nothing to do with yourself. Please keep the project address. Thank you.
+### Local Development
+1. Backend development
+```bash
+python main.py
+```
+
+2. Frontend development
+```bash
+cd fcb-fronted
+npm install
+npm run dev
+```
+
+## 🤝 Contributing
+
+1. Fork the project
+2. Create your feature branch `git checkout -b feature/xxx`
+3. Commit your changes `git commit -m 'Add xxx'`
+4. Push to the branch `git push origin feature/xxx`
+5. Open a Pull Request
+
+## ❓ FAQ
+
+### Q: How to modify upload size limit?
+A: Change `uploadSize` in admin panel
+
+### Q: How to configure storage engine?
+A: Select storage engine and configure parameters in admin panel
+
+### Q: How to backup data?
+A: Backup the `data` directory
+
+For more questions, visit [Wiki](https://github.com/vastsa/FileCodeBox/wiki/常见问题)
+
+## �� Project Statistics and Analytics
+
+<div align="center">
+<a href="https://hellogithub.com/repository/75ad7ffedd404a6485b4d621ec5b47e6" target="_blank"><img src="https://api.hellogithub.com/v1/widgets/recommend.svg?rid=75ad7ffedd404a6485b4d621ec5b47e6&claim_uid=beSz6INEkCM4mDH" alt="Featured｜HelloGitHub" style="width: 200px; height: 45px;" width="200" height="45" /></a>
+
+![Repobeats](https://repobeats.axiom.co/api/embed/7a6c92f1d96ee57e6fb67f0df371528397b0c9ac.svg)
+
+[![Star History](https://api.star-history.com/svg?repos=vastsa/FileCodeBox&type=Date)](https://star-history.com/#vastsa/FileCodeBox&Date)
+</div>
+
+## 📜 Disclaimer
+
+This project is open-source for learning purposes only. It should not be used for any illegal purposes. The author is not responsible for any consequences. Please retain the project address and copyright information when using it.
